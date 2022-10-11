@@ -1,5 +1,8 @@
+import json
 from dataclasses import dataclass
+from typing import *
 
+from urllib3 import HTTPResponse
 from urllib3.connectionpool import HTTPSConnectionPool, HTTPConnectionPool
 
 
@@ -127,8 +130,11 @@ class Client:
         return 200 <= _response.status < 300
 
     @classmethod
-    def _to_model(cls, response, model):
+    def _to_model(cls,
+                  response: HTTPResponse,
+                  model: Union[Type[KillData], Type[StatusData], Type[SubmitData]],
+                  encoding='utf-8'):
         if cls._is_successful(response):
-            _json_response = response.json()
+            _json_response = json.loads(response.data.decode(encoding))
             return model.from_dict(**_json_response)
         return None

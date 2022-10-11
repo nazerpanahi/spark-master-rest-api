@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setuptools.setup(
     name="spark_master_rest_api",
     python_requires=">=3.6",
-    version="0.1.0",
+    version="0.1.1",
     url="https://github.com/nazerpanahi/spark-master-rest-api",
     license="GPLv3",
     author="Hamid Nazerpanahi",
