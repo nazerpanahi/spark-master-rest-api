@@ -94,7 +94,7 @@ class Client:
                                                   headers={
                                                       'Content-Type': 'application/json;charset=UTF-8',
                                                   },
-                                                  body={
+                                                  body=json.dumps({
                                                       'appResource': app_resource,
                                                       'sparkProperties': spark_properties,
                                                       'clientSparkVersion': self.spark_version,
@@ -102,7 +102,7 @@ class Client:
                                                       'environmentVariables': environment_variables or dict(),
                                                       'action': 'CreateSubmissionRequest',
                                                       'appArgs': app_args or list(),
-                                                  })
+                                                  }))
         return _response, self._to_model(_response, SubmitData)
 
     def status(self, driver_id: str):
